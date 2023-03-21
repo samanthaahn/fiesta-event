@@ -1,0 +1,12 @@
+:root {
+    --midnight: #003366;
+    --butter: #f7d850;
+    --creamsicle: #fbb678;
+    --bashful: #da8079;
+    --lightblush: #f39d88;
+}
+
+* {
+    background-color: var(--butter);
+    color: var(--midnight);   
+}
