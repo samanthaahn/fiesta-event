@@ -1,12 +1,19 @@
 :root {
+    /* Dark Blue */
     --midnight: #003366;
+    /* Light Yellow */
     --butter: #f7d850;
+    /* Light Orange */
     --creamsicle: #fbb678;
+    /* Dark Pink - Red */
     --bashful: #da8079;
+    /* Light Pinl */
     --lightblush: #f39d88;
 }
 
 * {
     background-color: var(--butter);
-    color: var(--midnight);   
+    color: var(--midnight);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+      /* Place Holder Font  */
 }
