@@ -17,3 +17,24 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
       /* Place Holder Font  */
 }
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bashful);
+}
+
+header h1, header p {
+    background-color: var(--bashful);
+}
+
+.div-search-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bashful);
+    margin: 10px;
+}
