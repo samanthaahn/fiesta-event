@@ -73,4 +73,3 @@ handleGenreSubmit();
 
 
 searchformEl.addEventListener('submit', handleSearchFormSubmit);
-genreFormEl.addEventListener('submit', )
