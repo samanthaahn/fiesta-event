@@ -50,7 +50,14 @@ function handleSearchFormSubmit(event) {
    function handleGenreSubmit(event) {
     event.preventDefault();
     ('#format-input').value;
-    
+
+    fetch(queryString)
+    .then(function(response){
+        return response.json()
+    }) 
+    .then(function(data){
+        console.log(data)
+    })
 
 
 }
