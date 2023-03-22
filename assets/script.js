@@ -25,6 +25,7 @@
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
+var genreFormEl = document.querySelector('#format-input');
 
 function handleSearchFormSubmit(event) {
     event.preventDefault();
@@ -32,8 +33,8 @@ function handleSearchFormSubmit(event) {
     var searchInputVal = document.querySelector('#search-input').value;
     // var formatInputVal = document.querySelector('#format-input').value;
 
-    if (!searchInputVal) {
-        console.error('You need input something to search up!');
+    if (!searchInputVal && !genreFormEl.value) {
+        console.error('You need input something to search up or click a genre!');
         return;
     }
     var queryString = 'https://www.googleapis.com/books/v1/volumes?q=' + searchInputVal +'inauthor'
@@ -45,5 +46,22 @@ function handleSearchFormSubmit(event) {
    .then(function(data){
     console.log(data)
    })
+
+   function handleGenreSubmit(event) {
+    event.preventDefault();
+    ('#format-input').value;
+    
+
+
+}
+
+handleGenreSubmit();
+
 }   
+
+
+
+
+
 searchformEl.addEventListener('submit', handleSearchFormSubmit);
+genreFormEl.addEventListener('submit', )
