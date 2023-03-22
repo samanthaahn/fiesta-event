@@ -18,16 +18,25 @@
       /* Place Holder Font  */
 }
 
-header {
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+header, header h1, header p {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: var(--bashful);
-}
-
-header h1, header p {
-    background-color: var(--bashful);
+    overflow: auto;
+    margin: 10px;
+    padding: 10px;
+    width: 75%;
 }
 
 .div-search-menu {
@@ -36,5 +45,34 @@ header h1, header p {
     justify-content: center;
     align-items: center;
     background-color: var(--bashful);
+    padding: 10px;
+    margin: 10px;
+    width: 25%;
+}
+
+.div-search-menu h2 {
+    background-color: var(--bashful);
+}
+
+#search-form, #format-input, .btn {
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--bashful);
+}
+
+#format-input, .btn {
+    background-color: var(--creamsicle);
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer img {
+    width: 25%;
+    height: auto;
     margin: 10px;
 }
