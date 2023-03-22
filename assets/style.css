@@ -17,7 +17,7 @@
 * {
     background-color: var(--ecru);
     color: var(--midnight);
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Cormorant', serif;
       /* Place Holder Font  */
 }
 
@@ -44,6 +44,12 @@ header, header h1, header p {
 
 header h1 {
     font-size: 50px;
+}
+
+p {
+    font-size: large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: justify;
 }
 
 .div-search-menu {
@@ -73,8 +79,10 @@ form, button {
 .btn {
     background-color: var(--midnight);
     color: var(--ecru);
-    font-weight: bolder;
+    font-weight:600;
     padding: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
 }
 
 #search-form, #format-input {
@@ -87,6 +95,8 @@ form, button {
     background-color: var(--creamsicle);
     font-weight: bold;
     text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
 }
 
 footer {
@@ -111,4 +121,6 @@ input::placeholder {
     color: var(--midnight);
     text-align: center;
     font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
 }
