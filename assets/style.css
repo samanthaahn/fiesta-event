@@ -2,17 +2,20 @@
     /* Dark Blue */
     --midnight: #003366;
     /* Light Yellow */
-    --butter: #f7d850;
+    --butter: #ffffbf;
     /* Light Orange */
     --creamsicle: #fbb678;
     /* Dark Pink - Red */
     --bashful: #da8079;
     /* Light Pinl */
     --lightblush: #f39d88;
+    /* Offwhite */
+    --ecru: #f5f3e3; 
+
 }
 
 * {
-    background-color: var(--butter);
+    background-color: var(--ecru);
     color: var(--midnight);
     font-family: Georgia, 'Times New Roman', Times, serif;
       /* Place Holder Font  */
@@ -59,14 +62,31 @@ header h1 {
     font-size: 25px;
 }
 
-#search-form, #format-input, .btn {
-    padding: 10px;
-    margin: 10px;
-    background-color: var(--bashful);
+form, button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
-#format-input, .btn {
+.btn {
+    background-color: var(--midnight);
+    color: var(--ecru);
+    font-weight: bolder;
+    padding: 10px;
+}
+
+#search-form, #format-input {
+    background-color: var(--bashful);
+    justify-content: center;
+    padding: 10px;
+}
+
+#format-input {
     background-color: var(--creamsicle);
+    font-weight: bold;
+    text-align: center;
 }
 
 footer {
@@ -80,4 +100,15 @@ footer img {
     width: 25%;
     height: auto;
     margin: 10px;
+}
+
+input {
+    padding: 15px;
+    background-color: var(--butter);
+}
+
+input::placeholder {
+    color: var(--midnight);
+    text-align: center;
+    font-weight: bold;
 }
