@@ -39,6 +39,10 @@ header, header h1, header p {
     width: 75%;
 }
 
+header h1 {
+    font-size: 50px;
+}
+
 .div-search-menu {
     display: flex;
     flex-direction: column;
@@ -47,11 +51,12 @@ header, header h1, header p {
     background-color: var(--bashful);
     padding: 10px;
     margin: 10px;
-    width: 25%;
+    width: 33%;
 }
 
 .div-search-menu h2 {
     background-color: var(--bashful);
+    font-size: 25px;
 }
 
 #search-form, #format-input, .btn {
