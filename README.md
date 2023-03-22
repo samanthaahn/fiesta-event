@@ -23,12 +23,11 @@ To use our site, simply enter in an author's name or select a genre that you wou
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+Samantha Anh - https://github.com/samanthaahn
+Daniel Boddicker - https://github.com/JasperJackalope
+Brittany Boughter - https://github.com/Bboughter
+Jonathan Leyva - https://github.com/JonMLeyva
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need he
+N/A
