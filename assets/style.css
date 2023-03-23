@@ -11,14 +11,11 @@
     --lightblush: #f39d88;
     /* Offwhite */
     --ecru: #f5f3e3; 
-
 }
 
 * {
     background-color: var(--ecru);
     color: var(--midnight);
-    font-family: 'Cormorant', serif;
-      /* Place Holder Font  */
 }
 
 body {
@@ -44,12 +41,15 @@ header, header h1, header p {
 
 header h1 {
     font-size: 50px;
+    letter-spacing: .05em;
+    font-family: 'Abril Fatface', cursive;
 }
 
 p {
-    font-size: large;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+    font-family: 'Cormorant', serif;
     text-align: justify;
+    font-weight: bolder;
 }
 
 .div-search-menu {
@@ -66,6 +66,7 @@ p {
 .div-search-menu h2 {
     background-color: var(--bashful);
     font-size: 25px;
+    letter-spacing: .05em;
 }
 
 form, button {
@@ -81,7 +82,7 @@ form, button {
     color: var(--ecru);
     font-weight:600;
     padding: 10px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Cormorant', serif;
     font-size: medium;
 }
 
@@ -95,7 +96,7 @@ form, button {
     background-color: var(--creamsicle);
     font-weight: bold;
     text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Cormorant', serif;
     font-size: medium;
 }
 
