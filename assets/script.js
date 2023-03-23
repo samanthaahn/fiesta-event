@@ -23,15 +23,19 @@
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
-var genreFormEl = document.querySelector('#format-input');
+// var genreFormEl = document.querySelector('#format-input').value;
 var resultscontentEl = document.querySelector('.resultcontent');
+var resultContentGenreEl= document.querySelector('#resultContentGenre')
+
+searchformEl.addEventListener('submit', handleSearchFormSubmit);
+
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
   // var formatInputVal = document.querySelector('#format-input').value;
 
-  // if (!searchInputVal && !genreFormEl.value) {
+  // if (!searchInputVal || !genreFormEl.value) {
   //   console.error('You need input something to search up or click a genre!');
   //   return;
   // }
@@ -53,30 +57,37 @@ function handleSearchFormSubmit(event) {
           printResults(volumeInfo);
         }
       })
-  }else {
-    var queryFormat =
-    'https://www.googleapis.com/books/v1/volumes?q=subject:' +
-    genreFormEl.value; 
+  }
+  //   var queryFormat =
+  //   'https://www.googleapis.com/books/v1/volumes?q=subject:' +
+  //   genreFormEl.value; 
   
-  fetch(queryFormat)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    var {items} = data;
-    for (var i = 0; i < items.length; i++) {
-      var { volumeInfo } = items[i];
-      printResultsGenre(volumeInfo);
-    }
+  // fetch(queryFormat)
+  // .then(function (response) {
+  //   return response.json();
+  // })
+  // .then(function (data) {
+  //   var {items} = data;
+  //   for (var i = 0; i < items.length; i++) {
+  //     var { volumeInfo } = items[i];
+  //     printResultsGenre(volumeInfo);
+  //   }
 
     //add create element, textContent, append
-  });
-}
-}
+  };
+
+// if (!searchInputVal || !genreFormEl.value) {
+//   console.error('You need input something to search up or click a genre!');
+//   return;
+// }
+
 
 function printResults(authorList) {
   console.log(authorList);
-
+  if (!authorList.volumeInfo) {
+    // console.error('You need input something to search up or click a genre!');
+    return;
+  } 
   //add create element, textContent, append
 
   // set up `<div>` to hold result content
@@ -102,8 +113,34 @@ function printResults(authorList) {
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
 }
+searchformEl.addEventListener('submit', handleSearchFormGenre);
+
+function handleSearchFormGenre () {
+var genreFormEl = document.querySelector('#format-input').value;
+var queryFormat =
+'https://www.googleapis.com/books/v1/volumes?q=subject:' +
+genreFormEl 
+
+fetch(queryFormat)
+.then(function (response) {
+return response.json();
+})
+.then(function (data) {
+var { genres } = data;
+
+for (var i = 0; i < genres.length; i++) {
+  var { volumeInfo } = genres[i];
+  printResultsGenre(volumeInfo);
+}
+}
+)}
 
 function printResultsGenre(genreList) {
+
+  if (!genreList.volumeInfo) {
+    // console.error('You need input something to search up or click a genre!');
+    return;
+  }
   
   var resultCardGenre = document.createElement('div');
   // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
@@ -120,11 +157,11 @@ function printResultsGenre(genreList) {
   var bodyContentElGenre = document.createElement('p');
   bodyContentElGenre.innerHTML =
     '<strong>Author:</strong> ' + genreList.authors + '<br/>';
-  var imageElGenre = document.createElement('img');
-  imageElGenre.src = genreList.imageLinks.smallThumbnail;
+  // var imageElGenre = document.createElement('img');
+  // imageElGenre.src = genreList.imageLinks.smallThumbnail;
 
-  resultBodyGenre.append(titleElGenre, bodyContentElGenre, imageElGenre, genreElGenre);
-  resultscontentEl.append(resultCardGenre);
+  resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre);
+  resultContentGenreEl.append(resultCardGenre);
 }
 
 // function handleGenreSubmit() {
@@ -146,7 +183,7 @@ function printResultsGenre(genreList) {
 //   handleGenreSubmit();
 // }
 
-searchformEl.addEventListener('submit', handleSearchFormSubmit);
+// searchformEl.addEventListener('submit', handleSearchFormSubmit);
 
 
 
