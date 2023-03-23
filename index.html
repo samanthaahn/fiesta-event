@@ -28,11 +28,11 @@
   <div class="div-search-menu">
     <h2>What are you in the mood for?</h2>
     <form id="search-form" class="form">
-        <button class="btn btn-info btn-block">Search by Author</button>
-        <input id="search-input" class="form-input" type="text" placeholder="Author Name"><br>
-        <p>OR</p>
-        <button class="btn btn-info btn-block">Search by Genre</button>
-        <select id="format-input" class="form-input">
+        <button class="btn-author">Search by Author</button>
+        <input id="search-input" class="form-input hide" type="text" placeholder="Author Name"><br>
+        <p id="p-or">or</p>
+        <button class="btn-genre">Search by Genre</button>
+        <select id="format-input" class="form-input hide">
         <option value="" disabled selected>Genre</option>
         <option value="romance">Romance</option>
         <option value="fiction">Fiction</option>
@@ -49,7 +49,7 @@
         <option value="action">Action</option>
         <option value="children">Children</option>
       </select><br>
-      <button class="btn btn-info btn-block">Let's Get Lit!</button>
+      <button id="btn-search" class="btn btn-info btn-block hide">Let's Get Lit!</button>
     </form>
   </div>
  

@@ -110,4 +110,39 @@ function handleSearchFormSubmit(event) {
   }
 }
 
-searchformEl.addEventListener("submit", handleSearchFormSubmit);
+
+}   
+
+
+
+
+
+searchformEl.addEventListener('submit', handleSearchFormSubmit);
+
+// Dan Author and Genre Search Buttons
+
+var btnAuthor = document.querySelector('.btn-author');
+var formInputBox = document.getElementById('search-input');
+var btnSearch = document.getElementById('btn-search');
+var btnGenre = document.querySelector('.btn-genre');
+var orParagraph = document.getElementById('p-or');
+var genreMenu = document.getElementById('format-input');
+
+btnAuthor.addEventListener('click', function() {
+  console.log('Author clicked!');
+  btnAuthor.classList.add('hide');
+  btnGenre.classList.add('hide');
+  formInputBox.classList.remove('hide');
+  btnSearch.classList.remove('hide');
+  orParagraph.classList.add('hide');
+});
+
+btnGenre.addEventListener('click', function() {
+  console.log('Genre clicked!');
+  btnGenre.classList.add('hide');
+  btnAuthor.classList.add('hide');
+  genreMenu.classList.remove('hide');
+  btnGenre.classList.add('hide');
+  orParagraph.classList.add('hide');
+  btnSearch.classList.remove('hide');
+});
