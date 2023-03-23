@@ -25,6 +25,7 @@
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
+var genreFormEl = document.querySelector('#format-input');
 
 function handleSearchFormSubmit(event) {
     event.preventDefault();
@@ -32,11 +33,13 @@ function handleSearchFormSubmit(event) {
     var searchInputVal = document.querySelector('#search-input').value;
     // var formatInputVal = document.querySelector('#format-input').value;
 
-    if (!searchInputVal) {
-        console.error('You need input something to search up!');
+    if (!searchInputVal && !genreFormEl.value) {
+        console.error('You need input something to search up or click a genre!');
         return;
     }
-    var queryString = 'https://www.googleapis.com/books/v1/volumes?q=' + searchInputVal +'inauthor'
+
+if (searchInputVal ) {
+    var queryString = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:' + searchInputVal
 
     fetch(queryString)
    .then(function(response){
@@ -44,6 +47,48 @@ function handleSearchFormSubmit(event) {
    })
    .then(function(data){
     console.log(data)
-   })
+   
+
+//add create element, textContent, append
+
+
+
+})
+
+}
+
+
+
+   function handleGenreSubmit() {
+    var queryFormat = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genreFormEl.value
+
+    fetch(queryFormat)
+    .then(function(response){
+        return response.json()
+    }) 
+    .then(function(data){
+        console.log(data)
+    
+    
+    
+    //add create element, textContent, append
+    
+    
+    
+    
+    })
+
+
+}
+if (genreFormEl.value) {
+    handleGenreSubmit();
+}
+
+
 }   
+
+
+
+
+
 searchformEl.addEventListener('submit', handleSearchFormSubmit);
