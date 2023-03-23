@@ -63,7 +63,11 @@ function handleSearchFormSubmit(event) {
     return response.json();
   })
   .then(function (data) {
-    console.log(data);
+    var {items} = data;
+    for (var i = 0; i < items.length; i++) {
+      var { volumeInfo } = items[i];
+      printResultsGenre(volumeInfo);
+    }
 
     //add create element, textContent, append
   });
@@ -97,6 +101,30 @@ function printResults(authorList) {
 
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
+}
+
+function printResultsGenre(genreList) {
+  
+  var resultCardGenre = document.createElement('div');
+  // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+
+  var resultBodyGenre = document.createElement('div');
+  // resultBody.classList.add('card-body');
+  resultCardGenre.append(resultBodyGenre);
+
+  var titleElGenre = document.createElement('h3');
+  titleElGenre.textContent = genreList.title;
+  var genreElGenre = document.createElement('p');
+  genreElGenre.textContent = genreList.categories
+
+  var bodyContentElGenre = document.createElement('p');
+  bodyContentElGenre.innerHTML =
+    '<strong>Author:</strong> ' + genreList.authors + '<br/>';
+  var imageElGenre = document.createElement('img');
+  imageElGenre.src = genreList.imageLinks.smallThumbnail;
+
+  resultBodyGenre.append(titleElGenre, bodyContentElGenre, imageElGenre, genreElGenre);
+  resultscontentEl.append(resultCardGenre);
 }
 
 // function handleGenreSubmit() {
