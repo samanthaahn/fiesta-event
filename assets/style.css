@@ -3,7 +3,7 @@
     --butter: #ffffbf;
     --creamsicle: #fbb678;
     --bashful: #da8079;
-    --lightblush: #f39d88;
+    --lightblush: #fcbacb;
     --ecru: #f5f3e3; 
 }
 
@@ -76,8 +76,8 @@ form, button {
 }
 
 .btn {
-    background-color: var(--midnight);
-    color: var(--ecru);
+    background-color: var(--lightblush);
+    color: var(--midnight);
     font-weight:600;
     padding: 10px;
     font-family: 'Cormorant', serif;
