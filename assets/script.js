@@ -49,65 +49,86 @@ function handleSearchFormSubmit(event) {
         console.log(data);
 
         //add create element, textContent, append
-        
+
         function printResults(resultObj) {
-            console.log(resultObj);
-          
-            // set up `<div>` to hold result content
+          console.log(resultObj);
 
-            var resultCard = document.createElement('div');
-            resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
-          
-            var resultBody = document.createElement('div');
-            resultBody.classList.add('card-body');
-            resultCard.append(resultBody);
-          
-            var titleEl = document.createElement('h3');
-            titleEl.textContent = resultObj.title;
+          // set up `<div>` to hold result content
+          // var resultauthors = document.createElement('div');
+          // resultauthors.classList.add('card', 'col-6');
 
-            
-          
-            var bodyContentEl = document.createElement('p');
-            bodyContentEl.innerHTML =
-              '<strong>Author:</strong> ' + resultObj.volumeInfo.authors + '<br/>';
-          
-            if (resultObj.title) {
-              bodyContentEl.innerHTML +=
-                '<strong>Title:</strong> ' + resultObj.volumneInfo.title + '<br/>';
-            } else {
-              bodyContentEl.imageLinks +=
-                '<strong>Image:</strong>' + resultObj.volumneInfo.imageLinks.smallThumbnail + '<br/>';
-            }
-          
-            if (resultObj.description) {
-              bodyContentEl.innerHTML +=
-                '<strong>Description:</strong> ' + resultObj.description[0];
-            } else {
-              bodyContentEl.innerHTML +=
-                '<strong>Description:</strong>  No description for this entry.';
-            }
+          var resultCard = document.createElement('div');
+          // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
-  }});
-  }
+          var resultBody = document.createElement('div');
+          // resultBody.classList.add('card-body');
+          resultCard.append(resultBody);
 
-  function handleGenreSubmit() {
-    var queryFormat =
-      "https://www.googleapis.com/books/v1/volumes?q=subject:" +
-      genreFormEl.value;
+          var titleEl = document.createElement('h3');
+          titleEl.textContent = resultObj.volumeInfo.title;
 
-    fetch(queryFormat)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
 
-        //add create element, textContent, append
-      });
-  }
-  if (genreFormEl.value) {
-    handleGenreSubmit();
-  }
+
+          var bodyContentEl = document.createElement('p');
+          bodyContentEl.innerHTML =
+            '<strong>Author:</strong> ' + resultObj.volumeInfo.authors + '<br/>';
+          var imageEl = document.createElement('img');
+          imageEl.innerHTML =
+            '<strong>Image:</strong>' + resultObj.volumneInfo.imageLinks.smallThumbnail + '<br/>';
+
+          resultBody.append(bodyContentEl, imageEl, titleEl)
+
+          if (resultObj.title) {
+            bodyContentEl.innerHTML +=
+              '<strong>Title:</strong> ' + resultObj.volumneInfo.title + '<br/>';
+          } else {
+            bodyContentEl.innerHTML +=
+              '<strong>Title:</strong> No description for this entry.';
+          }
+
+          if (resultObj.image) {
+            bodyContentEl.innerHTML +=
+              '<strong>Image:</strong> ' + resultObj.volumneInfo.imageLinks.smallThumbnail + '<br/>';
+          } else {
+            bodyContentEl.innerHTML +=
+              '<strong>Image:</strong> No description for this entry.';
+          }
+
+          if (resultObj.description) {
+            bodyContentEl.innerHTML +=
+              '<strong>Description:</strong> ' + resultObj.description[0];
+          } else {
+            bodyContentEl.innerHTML +=
+              '<strong>Description:</strong>  No description for this entry.';
+          }
+
+          for (var i = 0; i < resultObj.results.length; i++) {
+            printResults(resultObj.results[i]);
+          }
+        }
+
+      }
+      )}
 }
+
+function handleGenreSubmit() {
+  var queryFormat =
+    "https://www.googleapis.com/books/v1/volumes?q=subject:" +
+    genreFormEl.value;
+
+  fetch(queryFormat)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+
+      //add create element, textContent, append
+    });
+}
+if (genreFormEl.value) {
+  handleGenreSubmit();
+}
+
 
 searchformEl.addEventListener("submit", handleSearchFormSubmit);
