@@ -1,15 +1,9 @@
 :root {
-    /* Dark Blue */
     --midnight: #003366;
-    /* Light Yellow */
     --butter: #ffffbf;
-    /* Light Orange */
     --creamsicle: #fbb678;
-    /* Dark Pink - Red */
     --bashful: #da8079;
-    /* Light Pinl */
     --lightblush: #f39d88;
-    /* Offwhite */
     --ecru: #f5f3e3; 
 }
 
@@ -124,4 +118,8 @@ input::placeholder {
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: medium;
+}
+
+.hide {
+    display: none;
 }
