@@ -53,14 +53,18 @@ p {
     align-items: center;
     background-color: var(--bashful);
     padding: 10px;
-    margin: 10px;
     width: 33%;
 }
 
-.div-search-menu h2 {
+.div-search-menu h2, .div-search-menu p {
     background-color: var(--bashful);
     font-size: 25px;
     letter-spacing: .05em;
+}
+
+.div-search-menu p {
+    margin-top: -5px;
+    margin-bottom: 15px;
 }
 
 form, button {
@@ -75,6 +79,24 @@ form, button {
     background-color: var(--midnight);
     color: var(--ecru);
     font-weight:600;
+    padding: 10px;
+    font-family: 'Cormorant', serif;
+    font-size: medium;
+}
+
+.btn-author {
+    background-color: var(--butter);
+    color: var(--midnight);
+    font-weight: 700;
+    padding: 10px;
+    font-family: 'Cormorant', serif;
+    font-size: medium;
+}
+
+.btn-genre {
+    background-color: var(--creamsicle);
+    color: var(--midnight);
+    font-weight: 700;
     padding: 10px;
     font-family: 'Cormorant', serif;
     font-size: medium;
