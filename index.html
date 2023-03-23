@@ -1,66 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LitList</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LitList</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/style.css" />
-</head>
-
-<body>
-  <header>
-    <h1>🔥 LitList 🔥</h1>
-    <p>The all-in-one site to find a book recommendation and its corresponding movie. Whether you're a book connoisseur
-      or someone who's just getting started, this site will give you the perfect recommendations. With just a few
-      clicks, you'll be able to discover new and exciting books (and their movies) that match your preferred genre or
-      author.</p>
-    <p>Simply enter the name of your favorite author or select the genre that speaks to you, and our advanced algorithm
-      will analyze millions of books to curate a personalized list of recommendations tailored just for you.</p>
-    <p>With our website, you'll never have to worry about running out of books to read. Our expertly curated book
-      recommendations will keep you engaged and entertained for hours on end. So why wait? Start discovering your next
-      favorite book and watch its movie today!</p>
-  </header>
-  <div class="div-search-menu">
-    <h2>What are you in the mood for?</h2>
-    <form id="search-form" class="form">
+  <body>
+    <header>
+      <h1>🔥 LitList 🔥</h1>
+      <p>
+        The all-in-one site to find a book recommendation and its corresponding
+        movie. Whether you're a book connoisseur or someone who's just getting
+        started, this site will give you the perfect recommendations. With just
+        a few clicks, you'll be able to discover new and exciting books (and
+        their movies) that match your preferred genre or author.
+      </p>
+      <p>
+        Simply enter the name of your favorite author or select the genre that
+        speaks to you, and our advanced algorithm will analyze millions of books
+        to curate a personalized list of recommendations tailored just for you.
+      </p>
+      <p>
+        With our website, you'll never have to worry about running out of books
+        to read. Our expertly curated book recommendations will keep you engaged
+        and entertained for hours on end. So why wait? Start discovering your
+        next favorite book and watch its movie today!
+      </p>
+    </header>
+    <div class="div-search-menu">
+      <h2>What are you in the mood for?</h2>
+      <form id="search-form" class="form">
         <button class="btn-author">Search by Author</button>
-        <input id="search-input" class="form-input hide" type="text" placeholder="Author Name"><br>
+        <input
+          id="search-input"
+          class="form-input hide"
+          type="text"
+          placeholder="Author Name"
+        /><br />
         <p id="p-or">or</p>
         <button class="btn-genre">Search by Genre</button>
         <select id="format-input" class="form-input hide">
-        <option value="" disabled selected>Genre</option>
-        <option value="romance">Romance</option>
-        <option value="fiction">Fiction</option>
-        <option value="non-fiction">Non-Fiction</option>
-        <option value="fantasy">Fantasy</option>
-        <option value="horror">Horror</option>
-        <option value="mystery">Mystery</option>
-        <option value="self-help">Self Help</option>
-        <option value="history">History</option>
-        <option value="poetry">Poetry</option>
-        <option value="adventure">Adventure</option>
-        <option value="cooking">Cooking</option>
-        <option value="biography">Biography</option>
-        <option value="action">Action</option>
-        <option value="children">Children</option>
-      </select><br>
-      <button id="btn-search" class="btn btn-info btn-block hide">Let's Get Lit!</button>
-    </form>
-  </div>
- 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script src="./assets/script.js"></script>
+          <option value="" disabled selected>Genre</option>
+          <option value="romance">Romance</option>
+          <option value="fiction">Fiction</option>
+          <option value="non-fiction">Non-Fiction</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="horror">Horror</option>
+          <option value="mystery">Mystery</option>
+          <option value="self-help">Self Help</option>
+          <option value="history">History</option>
+          <option value="poetry">Poetry</option>
+          <option value="adventure">Adventure</option>
+          <option value="cooking">Cooking</option>
+          <option value="biography">Biography</option>
+          <option value="action">Action</option>
+          <option value="children">Children</option></select
+        ><br />
+        <button id="btn-search" class="btn btn-info btn-block hide">
+          Let's Get Lit!
+        </button>
+      </form>
+    </div>
+    <div class="resultcontent"></div>
 
-  <footer>
-    <img src="./assets/img_1485.jpg" alt="octo-fiesta">
-    <h4 id="team-name">2B || !2B</h4>
-  </footer>
+    <footer>
+      <img src="./assets/img_1485.jpg" alt="octo-fiesta" />
+      <h4 id="team-name">2B || !2B</h4>
+    </footer>
 
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
