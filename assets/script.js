@@ -24,7 +24,7 @@
 //function for the button
 var searchformEl = document.querySelector("#search-form");
 var genreFormEl = document.querySelector("#format-input");
-
+var resultscontentEl = document.querySelector('.resultcontent');
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
@@ -50,85 +50,82 @@ function handleSearchFormSubmit(event) {
 
         //add create element, textContent, append
 
-        function printResults(resultObj) {
-          console.log(resultObj);
+        console.log(data);
 
-          // set up `<div>` to hold result content
-          // var resultauthors = document.createElement('div');
-          // resultauthors.classList.add('card', 'col-6');
+        // set up `<div>` to hold result content
+        // var resultauthors = document.createElement('div');
+        // resultauthors.classList.add('card', 'col-6');
 
-          var resultCard = document.createElement('div');
-          // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+        var resultCard = document.createElement('div');
+        // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
-          var resultBody = document.createElement('div');
-          // resultBody.classList.add('card-body');
-          resultCard.append(resultBody);
+        var resultBody = document.createElement('div');
+        // resultBody.classList.add('card-body');
+        resultCard.append(resultBody);
 
-          var titleEl = document.createElement('h3');
-          titleEl.textContent = resultObj.volumeInfo.title;
-
+        var titleEl = document.createElement('h3');
+        titleEl.textContent = data.items[0].volumeInfo.title;
 
 
-          var bodyContentEl = document.createElement('p');
-          bodyContentEl.innerHTML =
-            '<strong>Author:</strong> ' + resultObj.volumeInfo.authors + '<br/>';
-          var imageEl = document.createElement('img');
-          imageEl.innerHTML =
-            '<strong>Image:</strong>' + resultObj.volumneInfo.imageLinks.smallThumbnail + '<br/>';
 
-          resultBody.append(bodyContentEl, imageEl, titleEl)
+        var bodyContentEl = document.createElement('p');
+        bodyContentEl.innerHTML =
+          '<strong>Author:</strong> ' + data.items[0].volumeInfo.authors + '<br/>';
+        var imageEl = document.createElement('img');
+        imageEl.innerHTML =
+          '<strong>Image:</strong>' + data.items[0].volumeInfo.imageLinks.smallThumbnail + '<br/>';
 
-          if (resultObj.title) {
-            bodyContentEl.innerHTML +=
-              '<strong>Title:</strong> ' + resultObj.volumneInfo.title + '<br/>';
-          } else {
-            bodyContentEl.innerHTML +=
-              '<strong>Title:</strong> No description for this entry.';
-          }
+        resultBody.append(bodyContentEl, imageEl, titleEl)
+        resultscontentEl.append(resultCard)
 
-          if (resultObj.image) {
-            bodyContentEl.innerHTML +=
-              '<strong>Image:</strong> ' + resultObj.volumneInfo.imageLinks.smallThumbnail + '<br/>';
-          } else {
-            bodyContentEl.innerHTML +=
-              '<strong>Image:</strong> No description for this entry.';
-          }
-
-          if (resultObj.description) {
-            bodyContentEl.innerHTML +=
-              '<strong>Description:</strong> ' + resultObj.description[0];
-          } else {
-            bodyContentEl.innerHTML +=
-              '<strong>Description:</strong>  No description for this entry.';
-          }
-
-          for (var i = 0; i < resultObj.results.length; i++) {
-            printResults(resultObj.results[i]);
-          }
+        if (data.items) {
+          bodyContentEl.innerHTML +=
+            '<strong>Title:</strong> ' + data.items[0].volumeInfo.title + '<br/>';
+        } else {
+          bodyContentEl.innerHTML +=
+            '<strong>Title:</strong> No description for this entry.';
         }
 
-      }
-      )}
-}
+        if (data.items) {
+          bodyContentEl.innerHTML +=
+            '<strong>Image:</strong> ' + data.items[0].volumeInfo.imageLinks.smallThumbnail + '<br/>';
+        } else {
+          bodyContentEl.innerHTML +=
+            '<strong>Image:</strong> No description for this entry.';
+        }
 
-function handleGenreSubmit() {
-  var queryFormat =
-    "https://www.googleapis.com/books/v1/volumes?q=subject:" +
-    genreFormEl.value;
+        if (data.items) {
+          bodyContentEl.innerHTML +=
+            '<strong>Description:</strong> ' + data.description[0];
+        } else {
+          bodyContentEl.innerHTML +=
+            '<strong>Description:</strong>  No description for this entry.';
+        }
 
-  fetch(queryFormat)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
+        // for (var i = 0; i < data.items.length; i++) {
+        //   printResults(data.items[i]);
+        // }
+      })
+}}
 
-      //add create element, textContent, append
-    });
-}
-if (genreFormEl.value) {
-  handleGenreSubmit();
-}
+  function handleGenreSubmit() {
+    var queryFormat =
+      "https://www.googleapis.com/books/v1/volumes?q=subject:" +
+      genreFormEl.value;
+
+    fetch(queryFormat)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+
+        //add create element, textContent, append
+      });
+  }
+  if (genreFormEl.value) {
+    handleGenreSubmit();
+  }
 
 
-searchformEl.addEventListener("submit", handleSearchFormSubmit);
+  searchformEl.addEventListener("submit", handleSearchFormSubmit); 
