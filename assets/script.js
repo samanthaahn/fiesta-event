@@ -23,7 +23,6 @@
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
-var genreFormEl = document.querySelector('#format-input').value;
 var resultscontentEl = document.querySelector('.resultcontent');
 var resultContentGenreEl= document.querySelector('.resultContentGenre')
 
@@ -33,13 +32,7 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
-  // var formatInputVal = document.querySelector('#format-input').value;
-
-  // if (!searchInputVal || !genreFormEl.value) {
-  //   console.error('You need input something to search up or click a genre!');
-  //   return;
-  // }
-
+ 
   if (searchInputVal) {
     var queryString =
       'https://www.googleapis.com/books/v1/volumes?q=inauthor:' +
@@ -58,38 +51,10 @@ function handleSearchFormSubmit(event) {
         }
       })
   }
-  //   var queryFormat =
-  //   'https://www.googleapis.com/books/v1/volumes?q=subject:' +
-  //   genreFormEl.value; 
-  
-  // fetch(queryFormat)
-  // .then(function (response) {
-  //   return response.json();
-  // })
-  // .then(function (data) {
-  //   var {items} = data;
-  //   for (var i = 0; i < items.length; i++) {
-  //     var { volumeInfo } = items[i];
-  //     printResultsGenre(volumeInfo);
-  //   }
-
-    //add create element, textContent, append
-  };
-
-// if (!searchInputVal || !genreFormEl.value) {
-//   console.error('You need input something to search up or click a genre!');
-//   return;
-// }
-
+}
 
 function printResults(authorList) {
   console.log(authorList);
-
-  //add create element, textContent, append
-
-  // set up `<div>` to hold result content
-  // var resultauthors = document.createElement('div');
-  // resultauthors.classList.add('card', 'col-6');
 
   var resultCard = document.createElement('div');
   // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
@@ -132,7 +97,7 @@ for (var i = 0; i < items.length; i++) {
   printResultsGenre(volumeInfo);
 }
 }
-)}
+)
 
 function printResultsGenre(genreList) {
 console.log(genreList)
@@ -160,34 +125,7 @@ var resultContentGenreEl= document.querySelector('.resultContentGenre')
   resultContentGenreEl.append(resultCardGenre);
  
 }
-
-// function handleGenreSubmit() {
-//   var queryFormat =
-//     'https://www.googleapis.com/books/v1/volumes?q=subject:' +
-//     genreFormEl.value;
-
-//   fetch(queryFormat)
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-
-//       //add create element, textContent, append
-//     });
-// }
-// if (genreFormEl.value) {
-//   handleGenreSubmit();
-// }
-
-// searchformEl.addEventListener('submit', handleSearchFormSubmit);
-
-
-
-
-
-
-// searchformEl.addEventListener('submit', handleSearchFormSubmit);
+}
 
 // Dan Author and Genre Search Buttons
 
