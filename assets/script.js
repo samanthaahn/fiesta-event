@@ -23,9 +23,9 @@
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
-// var genreFormEl = document.querySelector('#format-input').value;
+var genreFormEl = document.querySelector('#format-input').value;
 var resultscontentEl = document.querySelector('.resultcontent');
-var resultContentGenreEl= document.querySelector('#resultContentGenre')
+var resultContentGenreEl= document.querySelector('.resultContentGenre')
 
 searchformEl.addEventListener('submit', handleSearchFormSubmit);
 
@@ -84,10 +84,7 @@ function handleSearchFormSubmit(event) {
 
 function printResults(authorList) {
   console.log(authorList);
-  if (!authorList.volumeInfo) {
-    // console.error('You need input something to search up or click a genre!');
-    return;
-  } 
+
   //add create element, textContent, append
 
   // set up `<div>` to hold result content
@@ -115,7 +112,9 @@ function printResults(authorList) {
 }
 searchformEl.addEventListener('submit', handleSearchFormGenre);
 
+
 function handleSearchFormGenre () {
+
 var genreFormEl = document.querySelector('#format-input').value;
 var queryFormat =
 'https://www.googleapis.com/books/v1/volumes?q=subject:' +
@@ -126,22 +125,19 @@ fetch(queryFormat)
 return response.json();
 })
 .then(function (data) {
-var { genres } = data;
+var { items } = data;
 
-for (var i = 0; i < genres.length; i++) {
-  var { volumeInfo } = genres[i];
+for (var i = 0; i < items.length; i++) {
+  var { volumeInfo } = items[i];
   printResultsGenre(volumeInfo);
 }
 }
 )}
 
 function printResultsGenre(genreList) {
-
-  if (!genreList.volumeInfo) {
-    // console.error('You need input something to search up or click a genre!');
-    return;
-  }
-  
+console.log(genreList)
+ 
+var resultContentGenreEl= document.querySelector('.resultContentGenre') 
   var resultCardGenre = document.createElement('div');
   // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
@@ -157,11 +153,12 @@ function printResultsGenre(genreList) {
   var bodyContentElGenre = document.createElement('p');
   bodyContentElGenre.innerHTML =
     '<strong>Author:</strong> ' + genreList.authors + '<br/>';
-  // var imageElGenre = document.createElement('img');
-  // imageElGenre.src = genreList.imageLinks.smallThumbnail;
+  var imageElGenre = document.createElement('img');
+  imageElGenre.src = genreList.imageLinks.smallThumbnail;
 
-  resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre);
+  resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre, imageElGenre);
   resultContentGenreEl.append(resultCardGenre);
+ 
 }
 
 // function handleGenreSubmit() {
