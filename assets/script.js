@@ -44,7 +44,7 @@ function handleSearchFormSubmit(event) {
       })
       .then(function (data) {
         var { items } = data;
-        resultscontentEl.innerHTML='';
+        resultscontentEl.innerHTML = '';
         for (var i = 0; i < items.length; i++) {
           var { volumeInfo } = items[i];
           printResults(volumeInfo);
@@ -84,7 +84,7 @@ searchformEl.addEventListener('submit', handleSearchFormGenre);
 function handleSearchFormGenre() {
 
   var genreFormEl = document.querySelector('#format-input').value;
-  
+
   var queryFormat =
     'https://www.googleapis.com/books/v1/volumes?q=subject:' +
     genreFormEl
@@ -95,7 +95,7 @@ function handleSearchFormGenre() {
     })
     .then(function (data) {
       var { items } = data;
-      resultContentGenreEl.innerHTML='';
+      resultContentGenreEl.innerHTML = '';
       for (var i = 0; i < items.length; i++) {
         var { volumeInfo } = items[i];
         printResultsGenre(volumeInfo);
@@ -107,27 +107,24 @@ function handleSearchFormGenre() {
 function printResultsGenre(genreList) {
   console.log(genreList)
 
-
-
-
   var resultCardGenre = document.createElement('div');
   // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
   var resultBodyGenre = document.createElement('div');
   // resultBody.classList.add('card-body');
   resultCardGenre.append(resultBodyGenre);
-  
+
   var titleElGenre = document.createElement('h3');
   titleElGenre.textContent = genreList.title;
- 
+
   var genreElGenre = document.createElement('p');
   genreElGenre.textContent = genreList.categories
 
   var bodyContentElGenre = document.createElement('p');
   bodyContentElGenre.innerHTML =
     '<strong>Author:</strong> ' + genreList.authors + '<br/>';
-  
-    var imageElGenre = document.createElement('img');
+
+  var imageElGenre = document.createElement('img');
   imageElGenre.src = genreList.imageLinks.smallThumbnail;
 
   resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre, imageElGenre);
@@ -145,7 +142,7 @@ var btnGenre = document.querySelector('.btn-genre');
 var orParagraph = document.getElementById('p-or');
 var genreMenu = document.getElementById('format-input');
 
-btnAuthor.addEventListener('click', function() {
+btnAuthor.addEventListener('click', function () {
   console.log('Author clicked!');
   btnAuthor.classList.add('hide');
   btnGenre.classList.add('hide');
@@ -154,7 +151,7 @@ btnAuthor.addEventListener('click', function() {
   orParagraph.classList.add('hide');
 });
 
-btnGenre.addEventListener('click', function() {
+btnGenre.addEventListener('click', function () {
   console.log('Genre clicked!');
   btnGenre.classList.add('hide');
   btnAuthor.classList.add('hide');
