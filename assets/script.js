@@ -1,3 +1,11 @@
+var btnAuthor = document.querySelector('.btn-author');
+var formInputBox = document.getElementById('search-input');
+var btnSearch = document.getElementById('btn-search-genre');
+var btnGenre = document.querySelector('.btn-genre');
+var orParagraph = document.getElementById('p-or');
+var genreMenu = document.getElementById('format-input');
+var btnSearchAuthor = document.getElementById('btn-search-author');
+
 function findmovie(moviename) {
 
   var queryMovie = 'https://www.omdbapi.com/?apikey=ea0f7fcf&t=' + moviename
@@ -7,16 +15,39 @@ function findmovie(moviename) {
   })
   .then(function(data) {
       console.log(data);
+      if (data.Response==='True') {
+        printResultsMovie(data);
+      }
   })
   }
   
+var resultContentMovieEl = document.querySelector('.resultContentMovies')
+
+  function printResultsMovie(movieTitles) {
+    console.log(movieTitles)
+  
+    var resultCardMovieEl = document.createElement('div');
+  
+    var resultBodyMovieEl = document.createElement('div');
+    
+    resultCardMovieEl.append(resultBodyMovieEl);
+  
+    var titleElMovie = document.createElement('h3');
+    titleElMovie.textContent = movieTitles.Title;
+  
+    var imageElMovie = document.createElement('img');
+    imageElMovie.src = movieTitles.Poster;
+  
+    resultBodyMovieEl.append(titleElMovie, imageElMovie);
+    resultContentMovieEl.append(resultCardMovieEl);
+  }
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
 var resultscontentEl = document.querySelector('.resultcontent');
 var resultContentGenreEl = document.querySelector('.resultContentGenre');
 
-searchformEl.addEventListener('submit', handleSearchFormSubmit);
+btnSearchAuthor.addEventListener('click', handleSearchFormSubmit);
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
@@ -69,9 +100,10 @@ function printResults(authorList) {
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
 }
-searchformEl.addEventListener('submit', handleSearchFormGenre);
+btnSearch.addEventListener('click', handleSearchFormGenre);
 
-function handleSearchFormGenre() {
+function handleSearchFormGenre(event) {
+  event.preventDefault();
 
   var genreFormEl = document.querySelector('#format-input').value;
 
@@ -125,19 +157,14 @@ function printResultsGenre(genreList) {
 
 // Dan Author and Genre Search Buttons
 
-var btnAuthor = document.querySelector('.btn-author');
-var formInputBox = document.getElementById('search-input');
-var btnSearch = document.getElementById('btn-search');
-var btnGenre = document.querySelector('.btn-genre');
-var orParagraph = document.getElementById('p-or');
-var genreMenu = document.getElementById('format-input');
+
 
 btnAuthor.addEventListener('click', function () {
   console.log('Author clicked!');
   btnAuthor.classList.add('hide');
   btnGenre.classList.add('hide');
   formInputBox.classList.remove('hide');
-  btnSearch.classList.remove('hide');
+  btnSearchAuthor.classList.remove('hide');
   orParagraph.classList.add('hide');
 });
 
