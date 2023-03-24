@@ -24,7 +24,7 @@
 //function for the button
 var searchformEl = document.querySelector('#search-form');
 var resultscontentEl = document.querySelector('.resultcontent');
-var resultContentGenreEl= document.querySelector('.resultContentGenre')
+var resultContentGenreEl = document.querySelector('.resultContentGenre');
 
 searchformEl.addEventListener('submit', handleSearchFormSubmit);
 
@@ -32,7 +32,7 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
- 
+
   if (searchInputVal) {
     var queryString =
       'https://www.googleapis.com/books/v1/volumes?q=inauthor:' +
@@ -44,14 +44,17 @@ function handleSearchFormSubmit(event) {
       })
       .then(function (data) {
         var { items } = data;
-
+        resultscontentEl.innerHTML='';
         for (var i = 0; i < items.length; i++) {
           var { volumeInfo } = items[i];
           printResults(volumeInfo);
         }
-      })
+
+      }
+      )
   }
 }
+
 
 function printResults(authorList) {
   console.log(authorList);
@@ -69,6 +72,7 @@ function printResults(authorList) {
   var bodyContentEl = document.createElement('p');
   bodyContentEl.innerHTML =
     '<strong>Author:</strong> ' + authorList.authors + '<br/>';
+
   var imageEl = document.createElement('img');
   imageEl.src = authorList.imageLinks.smallThumbnail;
 
@@ -77,55 +81,60 @@ function printResults(authorList) {
 }
 searchformEl.addEventListener('submit', handleSearchFormGenre);
 
+function handleSearchFormGenre() {
 
-function handleSearchFormGenre () {
+  var genreFormEl = document.querySelector('#format-input').value;
+  
+  var queryFormat =
+    'https://www.googleapis.com/books/v1/volumes?q=subject:' +
+    genreFormEl
 
-var genreFormEl = document.querySelector('#format-input').value;
-var queryFormat =
-'https://www.googleapis.com/books/v1/volumes?q=subject:' +
-genreFormEl 
-
-fetch(queryFormat)
-.then(function (response) {
-return response.json();
-})
-.then(function (data) {
-var { items } = data;
-
-for (var i = 0; i < items.length; i++) {
-  var { volumeInfo } = items[i];
-  printResultsGenre(volumeInfo);
+  fetch(queryFormat)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var { items } = data;
+      resultContentGenreEl.innerHTML='';
+      for (var i = 0; i < items.length; i++) {
+        var { volumeInfo } = items[i];
+        printResultsGenre(volumeInfo);
+      }
+    }
+    )
 }
-}
-)
 
 function printResultsGenre(genreList) {
-console.log(genreList)
- 
-var resultContentGenreEl= document.querySelector('.resultContentGenre') 
+  console.log(genreList)
+
+
+
+
   var resultCardGenre = document.createElement('div');
   // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
   var resultBodyGenre = document.createElement('div');
   // resultBody.classList.add('card-body');
   resultCardGenre.append(resultBodyGenre);
-
+  
   var titleElGenre = document.createElement('h3');
   titleElGenre.textContent = genreList.title;
+ 
   var genreElGenre = document.createElement('p');
   genreElGenre.textContent = genreList.categories
 
   var bodyContentElGenre = document.createElement('p');
   bodyContentElGenre.innerHTML =
     '<strong>Author:</strong> ' + genreList.authors + '<br/>';
-  var imageElGenre = document.createElement('img');
+  
+    var imageElGenre = document.createElement('img');
   imageElGenre.src = genreList.imageLinks.smallThumbnail;
 
   resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre, imageElGenre);
   resultContentGenreEl.append(resultCardGenre);
- 
+
 }
-}
+
 
 // Dan Author and Genre Search Buttons
 
