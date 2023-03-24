@@ -55,6 +55,7 @@ var resultContentMovieEl = document.querySelector('.resultContentMovies')
 var searchformEl = document.querySelector('#search-form');
 var resultscontentEl = document.querySelector('.resultcontent');
 var resultContentGenreEl = document.querySelector('.resultContentGenre');
+var searchResultsEl = document.querySelector('.search-results')
 
 // This is the addEventListener that handles specifically the author input. 
 btnSearchAuthor.addEventListener('click', handleSearchFormSubmit);
@@ -64,6 +65,12 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
+
+var searches = JSON.parse(localStorage.getItem('searchedAuthors'));
+if (searches) {
+  searchedAuthors = []
+  searches.forEach(search => searchedAuthors.push(search))
+}
 searchedAuthors.push(searchInputVal);
 localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
   if (searchInputVal) {
@@ -86,6 +93,16 @@ localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
         }
 
       });
+  }
+}
+function displayAuthors () {
+
+  if (searchedAuthors) {
+    searchedAuthors.forEach(item=> {
+      var displayEl = document.createElement('li');
+      displayEl.textContent=searchedAuthors;
+      searchResultsEl.appendChild(displayEl);
+    })
   }
 }
 
@@ -113,6 +130,17 @@ function printResults(authorList) {
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
 }
+
+// function displayAuthors () {
+//   localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
+//   if (searchedAuthors) {
+//     searchedAuthors.forEach(item=> {
+//       var displayEl = document.createElement('li');
+//       displayEl.textContent=searchedAuthors;
+//       searchResultsEl.appendChild(displayEl);
+//     })
+//   }
+// }
 
 // This handles the genre button function. 
 btnSearch.addEventListener('click', handleSearchFormGenre);
