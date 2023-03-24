@@ -28,6 +28,7 @@ var resultContentGenreEl = document.querySelector('.resultContentGenre');
 
 searchformEl.addEventListener('submit', handleSearchFormSubmit);
 
+
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
@@ -79,9 +80,12 @@ function printResults(authorList) {
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
 }
+
 searchformEl.addEventListener('submit', handleSearchFormGenre);
 
-function handleSearchFormGenre() {
+
+function handleSearchFormGenre(event) {
+  event.preventDefault();
 
   var genreFormEl = document.querySelector('#format-input').value;
 
