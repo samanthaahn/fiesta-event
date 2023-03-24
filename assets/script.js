@@ -1,25 +1,16 @@
-// OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=f5efd3a2
-//API for movie/show info
-// const fetch = require('node-fetch');
 
-// const url = 'https://streaming-availability.p.rapidapi.com/v2/services';
-// //API for streaming service
-// const options = {
-//     method: 'GET',
-//     headers: {
-//         'X-RapidAPI-Key': '3f0225be7bmshce5c6a43713c859p14d2adjsn50ce1176c7e8',
-//         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-//     }
-// };
+function findmovie(moviename) {
 
-// fetch(url, options)
-//     .then(res => res.json())
-//     .then(json => console.log(json))
-//     .catch(err => console.error('error:' + err));
+var queryMovie = 'https://www.omdbapi.com/?apikey=ea0f7fcf&t=' + moviename
+fetch(queryMovie)
+.then(function(response) {
+    return response.json();
+})
+.then(function(data) {
+    console.log(data);
+})
+}
 
-//https://www.googleapis.com/books/v1/volumes?q=search+terms
-//intitle:returns results where the text following this keyword is found in the title
-//inauthor: Returns results where the text following this keyword is found in the author
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
@@ -48,6 +39,7 @@ function handleSearchFormSubmit(event) {
         for (var i = 0; i < items.length; i++) {
           var { volumeInfo } = items[i];
           printResults(volumeInfo);
+          findmovie(volumeInfo.title);
         }
 
       }
@@ -60,10 +52,10 @@ function printResults(authorList) {
   console.log(authorList);
 
   var resultCard = document.createElement('div');
-  // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+
 
   var resultBody = document.createElement('div');
-  // resultBody.classList.add('card-body');
+
   resultCard.append(resultBody);
 
   var titleEl = document.createElement('h3');
@@ -94,6 +86,15 @@ function handleSearchFormGenre() {
       return response.json();
     })
     .then(function (data) {
+
+      console.log(data);
+
+      //add create element, textContent, append
+    });
+}
+
+if (genreFormEl.value) {
+handleGenreSubmit();
       var { items } = data;
       resultContentGenreEl.innerHTML = '';
       for (var i = 0; i < items.length; i++) {
@@ -131,7 +132,6 @@ function printResultsGenre(genreList) {
   resultContentGenreEl.append(resultCardGenre);
 
 }
-
 
 // Dan Author and Genre Search Buttons
 
