@@ -1,14 +1,14 @@
 
 function findmovie(moviename) {
 
-var queryMovie = 'https://www.omdbapi.com/?apikey=ea0f7fcf&t=' + moviename
-fetch(queryMovie)
-.then(function(response) {
-    return response.json();
-})
-.then(function(data) {
-    console.log(data);
-})
+  var queryMovie = 'https://www.omdbapi.com/?apikey=ea0f7fcf&t=' + moviename
+  fetch(queryMovie)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    })
 }
 
 
@@ -94,16 +94,15 @@ function handleSearchFormGenre() {
 }
 
 if (genreFormEl.value) {
-handleGenreSubmit();
-      var { items } = data;
-      resultContentGenreEl.innerHTML = '';
-      for (var i = 0; i < items.length; i++) {
-        var { volumeInfo } = items[i];
-        printResultsGenre(volumeInfo);
-      }
-    }
-    )
+  handleGenreSubmit();
+  var { items } = data;
+  resultContentGenreEl.innerHTML = '';
+  for (var i = 0; i < items.length; i++) {
+    var { volumeInfo } = items[i];
+    printResultsGenre(volumeInfo);
+  }
 }
+
 
 function printResultsGenre(genreList) {
   console.log(genreList)
