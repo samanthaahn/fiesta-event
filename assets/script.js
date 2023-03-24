@@ -1,34 +1,60 @@
-// OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=f5efd3a2
-//API for movie/show info
-// const fetch = require('node-fetch');
+// These are all our variable for the buttons on the main page. Specifically directing users to choose either author or genre
+var btnAuthor = document.querySelector('.btn-author');
+var formInputBox = document.getElementById('search-input');
+var btnSearch = document.getElementById('btn-search-genre');
+var btnGenre = document.querySelector('.btn-genre');
+var orParagraph = document.getElementById('p-or');
+var genreMenu = document.getElementById('format-input');
+var btnSearchAuthor = document.getElementById('btn-search-author');
 
-// const url = 'https://streaming-availability.p.rapidapi.com/v2/services';
-// //API for streaming service
-// const options = {
-//     method: 'GET',
-//     headers: {
-//         'X-RapidAPI-Key': '3f0225be7bmshce5c6a43713c859p14d2adjsn50ce1176c7e8',
-//         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-//     }
-// };
 
-// fetch(url, options)
-//     .then(res => res.json())
-//     .then(json => console.log(json))
-//     .catch(err => console.error('error:' + err));
+// The function for the movie api. This calls the movies that have the same title as the books. 
+function findmovie(moviename) {
 
-//https://www.googleapis.com/books/v1/volumes?q=search+terms
-//intitle:returns results where the text following this keyword is found in the title
-//inauthor: Returns results where the text following this keyword is found in the author
+  var queryMovie = 'https://www.omdbapi.com/?apikey=ea0f7fcf&t=' + moviename
+  fetch(queryMovie)
+  .then(function(response) {
+      return response.json();
+  })
+  .then(function(data) {
+      console.log(data);
+      if (data.Response==='True') {
+        printResultsMovie(data);
+      }
+  })
+  }
+  
+// These are the variables and the function that helps append the movies to the page.   
+var resultContentMovieEl = document.querySelector('.resultContentMovies')
 
-//function for the button
+  function printResultsMovie(movieTitles) {
+    console.log(movieTitles)
+  
+    var resultCardMovieEl = document.createElement('div');
+  
+    var resultBodyMovieEl = document.createElement('div');
+    
+    resultCardMovieEl.append(resultBodyMovieEl);
+  
+    var titleElMovie = document.createElement('h3');
+    titleElMovie.textContent = movieTitles.Title;
+  
+    var imageElMovie = document.createElement('img');
+    imageElMovie.src = movieTitles.Poster;
+  
+    resultBodyMovieEl.append(titleElMovie, imageElMovie);
+    resultContentMovieEl.append(resultCardMovieEl);
+  }
+
+// These are the variables for the search and genre inputs. 
 var searchformEl = document.querySelector('#search-form');
 var resultscontentEl = document.querySelector('.resultcontent');
 var resultContentGenreEl = document.querySelector('.resultContentGenre');
 
-searchformEl.addEventListener('submit', handleSearchFormSubmit);
+// This is the addEventListener that handles specifically the author input. 
+btnSearchAuthor.addEventListener('click', handleSearchFormSubmit);
 
-
+// This whole function runs the "author" book search.
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
@@ -49,22 +75,22 @@ function handleSearchFormSubmit(event) {
         for (var i = 0; i < items.length; i++) {
           var { volumeInfo } = items[i];
           printResults(volumeInfo);
+          findmovie(volumeInfo.title);
         }
 
-      }
-      )
+      });
   }
 }
 
-
+// This will print the results of the authors the user inputted (basically this appends the results to the page).
 function printResults(authorList) {
   console.log(authorList);
 
+// These are all the element we created for the results when they are being appended. 
   var resultCard = document.createElement('div');
-  // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
   var resultBody = document.createElement('div');
-  // resultBody.classList.add('card-body');
+
   resultCard.append(resultBody);
 
   var titleEl = document.createElement('h3');
@@ -81,9 +107,10 @@ function printResults(authorList) {
   resultscontentEl.append(resultCard);
 }
 
-searchformEl.addEventListener('submit', handleSearchFormGenre);
+// This handles the genre button function. 
+btnSearch.addEventListener('click', handleSearchFormGenre);
 
-
+// This is the function that searches specifically by genre. 
 function handleSearchFormGenre(event) {
   event.preventDefault();
 
@@ -108,16 +135,16 @@ function handleSearchFormGenre(event) {
     )
 }
 
+// This appends the page with the genre results. 
 function printResultsGenre(genreList) {
   console.log(genreList)
 
   var resultCardGenre = document.createElement('div');
-  // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
-
   var resultBodyGenre = document.createElement('div');
-  // resultBody.classList.add('card-body');
+
   resultCardGenre.append(resultBodyGenre);
 
+  // These are the element we created for the genre results when they are being appended. 
   var titleElGenre = document.createElement('h3');
   titleElGenre.textContent = genreList.title;
 
@@ -137,21 +164,14 @@ function printResultsGenre(genreList) {
 }
 
 
-// Dan Author and Genre Search Buttons
-
-var btnAuthor = document.querySelector('.btn-author');
-var formInputBox = document.getElementById('search-input');
-var btnSearch = document.getElementById('btn-search');
-var btnGenre = document.querySelector('.btn-genre');
-var orParagraph = document.getElementById('p-or');
-var genreMenu = document.getElementById('format-input');
+// These are the Author and Genre Search Buttons that appear on the front page that guide the user to their specific searches. 
 
 btnAuthor.addEventListener('click', function () {
   console.log('Author clicked!');
   btnAuthor.classList.add('hide');
   btnGenre.classList.add('hide');
   formInputBox.classList.remove('hide');
-  btnSearch.classList.remove('hide');
+  btnSearchAuthor.classList.remove('hide');
   orParagraph.classList.add('hide');
 });
 

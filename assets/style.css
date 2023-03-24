@@ -156,3 +156,27 @@ input::placeholder {
 #btn-search {
     box-shadow: 2px 2px 20px var(--creamsicle)
 }
+
+.resultsPrint {
+    overflow: hidden; /* clear any floats */
+  }
+  
+.resultcontent, .resultContentGenre {
+    width: 60%; /* set each column to take up one third of the width */
+    box-sizing: border-box; /* include padding and border in the width calculation */
+    float: left; /* float each column to the left */
+    padding: 10px; /* add padding to each column */
+  }
+
+.resultContentMovies {
+    width: 40%; /* set each column to take up one third of the width */
+    box-sizing: border-box; /* include padding and border in the width calculation */
+    float: right; /* float each column to the left */
+    padding: 10px; /* add padding to each column */
+}
+  
+  /* optional: add a border to each column */
+.resultcontent, .resultContentGenre, .resultContentMovies {
+    border: 1px solid black;
+  }
+  

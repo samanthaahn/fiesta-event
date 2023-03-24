@@ -4,24 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LitList</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <!-- This is our google font link (we used 2 different fonts) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant:wght@300&display=swap"
       rel="stylesheet"
     />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
 
   <body>
     <header>
+      <!-- This is our header and our paragraph that describes our webiste for the users -->
       <h1>🔥 LitList 🔥</h1>
       <p>
         The all-in-one site to find a book recommendation and its corresponding
@@ -42,6 +37,7 @@
         next favorite book and watch its movie today!
       </p>
     </header>
+    <!-- These div is specifically the search function that includes the buttons -->
     <div class="div-search-menu">
       <h2>What are you in the mood for?</h2>
       <button class="btn-author">Search by Author</button><br>
@@ -54,6 +50,7 @@
           type="text"
           placeholder="Author Name"
         /><br />
+        <!-- These are all our genres -->
         <select id="format-input" class="form-input hide">
           <option value="" disabled selected>Genre</option>
           <option value="romance">Romance</option>
@@ -71,25 +68,30 @@
           <option value="action">Action</option>
           <option value="children">Children</option></select
         ><br />
-        <button id="btn-search" class="btn btn-info btn-block hide">
+        <!-- These buttons are for the genre and author searches -->
+        <button id="btn-search-author" class="btn btn-info btn-block hide">
+          Let's Get Lit!
+        </button>
+        <button id="btn-search-genre" class="btn btn-info btn-block hide">
           Let's Get Lit!
         </button>
       </form>
     </div>
-    <div class="resultcontent"></div>
+    <!-- These are divs for all of our result contents -->
+    <div class="resultsPrint">
+      <div class="resultcontent"></div>
       <div class="resultContentGenre"></div>
+      <div class="resultContentMovies"></div>
+    </div>
+      <!-- This is our amazing footer that has our team name and image logo -->
     <footer>
       <img src="./assets/img_1485.jpg" alt="octo-fiesta" />
       <h4 id="team-name"> Team 2B || !2B</h4>
       <h4>Samantha Ahn, Daniel Boddicker, Brittany Boughter, Jonathan Leyva</h4>
       <h4>Thank you for joining the Octo-fiesta!</h4>
     </footer>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+<!-- We linked bootstrap -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   -->
     <script src="./assets/script.js"></script>
   </body>
 </html>
