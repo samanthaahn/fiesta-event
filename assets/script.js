@@ -14,42 +14,42 @@ function findmovie(moviename) {
 
   var queryMovie = 'https://www.omdbapi.com/?apikey=ea0f7fcf&t=' + moviename
   fetch(queryMovie)
-  .then(function(response) {
+    .then(function (response) {
       return response.json();
-  })
-  .then(function(data) {
-    console.log(data);
-      if (data.Response==='True') {
+    })
+    .then(function (data) {
+      console.log(data);
+      if (data.Response === 'True') {
         printResultsMovie(data);
       }
     })
-  }
+}
 
-  
+
 // These are the variables and the function that helps append the movies to the page.   
 var resultContentMovieEl = document.querySelector('.resultContentMovies')
 
-  function printResultsMovie(movieTitles) {
-    
-    console.log(movieTitles)
-  
-    var resultCardMovieEl = document.createElement('div');
-  
-    var resultBodyMovieEl = document.createElement('div');
-    
-    resultCardMovieEl.append(resultBodyMovieEl);
-  
-    var titleElMovie = document.createElement('h3');
-    titleElMovie.textContent = movieTitles.Title;
-  
-    var imageElMovie = document.createElement('img');
-    imageElMovie.src = movieTitles.Poster;
-  
-    resultBodyMovieEl.append(titleElMovie, imageElMovie);
-    resultContentMovieEl.append(resultCardMovieEl);
+function printResultsMovie(movieTitles) {
 
-   
-  }
+  console.log(movieTitles)
+
+  var resultCardMovieEl = document.createElement('div');
+
+  var resultBodyMovieEl = document.createElement('div');
+
+  resultCardMovieEl.append(resultBodyMovieEl);
+
+  var titleElMovie = document.createElement('h3');
+  titleElMovie.textContent = movieTitles.Title;
+
+  var imageElMovie = document.createElement('img');
+  imageElMovie.src = movieTitles.Poster;
+
+  resultBodyMovieEl.append(titleElMovie, imageElMovie);
+  resultContentMovieEl.append(resultCardMovieEl);
+
+
+}
 
 // These are the variables for the search and genre inputs. 
 var searchformEl = document.querySelector('#search-form');
@@ -60,19 +60,19 @@ var searchResultsEl = document.querySelector('.search-results')
 // This is the addEventListener that handles specifically the author input. 
 btnSearchAuthor.addEventListener('click', handleSearchFormSubmit);
 
-// This whole function runs the "author" book search.
+// This whole function runs the "author" book search and saves the searched authors to local storage.
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
 
-var searches = JSON.parse(localStorage.getItem('searchedAuthors'));
-if (searches) {
-  searchedAuthors = []
-  searches.forEach(search => searchedAuthors.push(search))
-}
-searchedAuthors.push(searchInputVal);
-localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
+  var searches = JSON.parse(localStorage.getItem('searchedAuthors'));
+  if (searches) {
+    searchedAuthors = []
+    searches.forEach(search => searchedAuthors.push(search))
+  }
+  searchedAuthors.push(searchInputVal);
+  localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
   if (searchInputVal) {
     var queryString =
       'https://www.googleapis.com/books/v1/volumes?q=inauthor:' +
@@ -96,12 +96,13 @@ localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
   }
   displayAuthors()
 }
-function displayAuthors () {
-
+//This function displays on the page previous authors searched.
+function displayAuthors() {
+  searchResultsEl.innerHTML = ""
   if (searchedAuthors) {
-    searchedAuthors.forEach(item=> {
+    searchedAuthors.forEach(item => {
       var displayEl = document.createElement('li');
-      displayEl.textContent=item;
+      displayEl.textContent = item;
       searchResultsEl.appendChild(displayEl);
     })
   }
@@ -111,7 +112,7 @@ function displayAuthors () {
 function printResults(authorList) {
   console.log(authorList);
 
-// These are all the element we created for the results when they are being appended. 
+  // These are all the element we created for the results when they are being appended. 
   var resultCard = document.createElement('div');
 
   var resultBody = document.createElement('div');
@@ -169,7 +170,7 @@ function handleSearchFormGenre(event) {
         printResultsGenre(volumeInfo);
         findmovie(volumeInfo.title);
       }
-      
+
     }
     )
 }
@@ -186,7 +187,7 @@ function printResultsGenre(genreList) {
   // These are the element we created for the genre results when they are being appended. 
   var titleElGenre = document.createElement('h3');
   titleElGenre.textContent = genreList.title;
-  
+
 
   var genreElGenre = document.createElement('p');
   genreElGenre.textContent = genreList.categories
