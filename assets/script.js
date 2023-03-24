@@ -23,18 +23,15 @@
 
 //function for the button
 var searchformEl = document.querySelector('#search-form');
-var genreFormEl = document.querySelector('#format-input');
 var resultscontentEl = document.querySelector('.resultcontent');
+var resultContentGenreEl = document.querySelector('.resultContentGenre');
+
+searchformEl.addEventListener('submit', handleSearchFormSubmit);
+
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
-  // var formatInputVal = document.querySelector('#format-input').value;
-
-  if (!searchInputVal && !genreFormEl.value) {
-    console.error('You need input something to search up or click a genre!');
-    return;
-  }
 
   if (searchInputVal) {
     var queryString =
@@ -47,23 +44,20 @@ function handleSearchFormSubmit(event) {
       })
       .then(function (data) {
         var { items } = data;
-
+        resultscontentEl.innerHTML = '';
         for (var i = 0; i < items.length; i++) {
           var { volumeInfo } = items[i];
           printResults(volumeInfo);
         }
-      });
+
+      }
+      )
   }
 }
 
+
 function printResults(authorList) {
   console.log(authorList);
-
-  //add create element, textContent, append
-
-  // set up `<div>` to hold result content
-  // var resultauthors = document.createElement('div');
-  // resultauthors.classList.add('card', 'col-6');
 
   var resultCard = document.createElement('div');
   // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
@@ -78,40 +72,66 @@ function printResults(authorList) {
   var bodyContentEl = document.createElement('p');
   bodyContentEl.innerHTML =
     '<strong>Author:</strong> ' + authorList.authors + '<br/>';
+
   var imageEl = document.createElement('img');
   imageEl.src = authorList.imageLinks.smallThumbnail;
 
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
 }
+searchformEl.addEventListener('submit', handleSearchFormGenre);
 
-function handleGenreSubmit() {
+function handleSearchFormGenre() {
+
+  var genreFormEl = document.querySelector('#format-input').value;
+
   var queryFormat =
     'https://www.googleapis.com/books/v1/volumes?q=subject:' +
-    genreFormEl.value;
+    genreFormEl
 
   fetch(queryFormat)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-
-      //add create element, textContent, append
-    });
+      var { items } = data;
+      resultContentGenreEl.innerHTML = '';
+      for (var i = 0; i < items.length; i++) {
+        var { volumeInfo } = items[i];
+        printResultsGenre(volumeInfo);
+      }
+    }
+    )
 }
-if (genreFormEl.value) {
-  handleGenreSubmit();
+
+function printResultsGenre(genreList) {
+  console.log(genreList)
+
+  var resultCardGenre = document.createElement('div');
+  // resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+
+  var resultBodyGenre = document.createElement('div');
+  // resultBody.classList.add('card-body');
+  resultCardGenre.append(resultBodyGenre);
+
+  var titleElGenre = document.createElement('h3');
+  titleElGenre.textContent = genreList.title;
+
+  var genreElGenre = document.createElement('p');
+  genreElGenre.textContent = genreList.categories
+
+  var bodyContentElGenre = document.createElement('p');
+  bodyContentElGenre.innerHTML =
+    '<strong>Author:</strong> ' + genreList.authors + '<br/>';
+
+  var imageElGenre = document.createElement('img');
+  imageElGenre.src = genreList.imageLinks.smallThumbnail;
+
+  resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre, imageElGenre);
+  resultContentGenreEl.append(resultCardGenre);
+
 }
 
-searchformEl.addEventListener('submit', handleSearchFormSubmit);
-
-
-
-
-
-
-searchformEl.addEventListener('submit', handleSearchFormSubmit);
 
 // Dan Author and Genre Search Buttons
 
@@ -122,7 +142,7 @@ var btnGenre = document.querySelector('.btn-genre');
 var orParagraph = document.getElementById('p-or');
 var genreMenu = document.getElementById('format-input');
 
-btnAuthor.addEventListener('click', function() {
+btnAuthor.addEventListener('click', function () {
   console.log('Author clicked!');
   btnAuthor.classList.add('hide');
   btnGenre.classList.add('hide');
@@ -131,7 +151,7 @@ btnAuthor.addEventListener('click', function() {
   orParagraph.classList.add('hide');
 });
 
-btnGenre.addEventListener('click', function() {
+btnGenre.addEventListener('click', function () {
   console.log('Genre clicked!');
   btnGenre.classList.add('hide');
   btnAuthor.classList.add('hide');
