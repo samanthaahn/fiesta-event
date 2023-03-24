@@ -94,13 +94,14 @@ localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
 
       });
   }
+  displayAuthors()
 }
 function displayAuthors () {
 
   if (searchedAuthors) {
     searchedAuthors.forEach(item=> {
       var displayEl = document.createElement('li');
-      displayEl.textContent=searchedAuthors;
+      displayEl.textContent=item;
       searchResultsEl.appendChild(displayEl);
     })
   }
