@@ -133,17 +133,6 @@ function printResults(authorList) {
   resultscontentEl.append(resultCard);
 }
 
-// function displayAuthors () {
-//   localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
-//   if (searchedAuthors) {
-//     searchedAuthors.forEach(item=> {
-//       var displayEl = document.createElement('li');
-//       displayEl.textContent=searchedAuthors;
-//       searchResultsEl.appendChild(displayEl);
-//     })
-//   }
-// }
-
 // This handles the genre button function. 
 btnSearch.addEventListener('click', handleSearchFormGenre);
 
