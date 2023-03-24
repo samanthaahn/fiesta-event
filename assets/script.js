@@ -161,6 +161,7 @@ function printResultsGenre(genreList) {
   resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre, imageElGenre);
   resultContentGenreEl.append(resultCardGenre);
 
+  findmovie(genreList.title);
 }
 
 

@@ -156,3 +156,31 @@ input::placeholder {
 #btn-search {
     box-shadow: 2px 2px 20px var(--creamsicle)
 }
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+  }
+  
+  .columns > div {
+    flex-basis: 33.33%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid var(--midnight);
+  }
+
+  .resultcontent {
+    background-color: var(--butter);
+  }
+
+  .resultContentGenre {
+    background-color: var(--creamsicle);
+  }
+
+  .resultContentMovies {
+    background-color: var(--lightblush);
+  }
+
+
+  
