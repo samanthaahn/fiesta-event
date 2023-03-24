@@ -6,6 +6,7 @@ var btnGenre = document.querySelector('.btn-genre');
 var orParagraph = document.getElementById('p-or');
 var genreMenu = document.getElementById('format-input');
 var btnSearchAuthor = document.getElementById('btn-search-author');
+var searchedAuthors = [];
 
 
 // The function for the movie api. This calls the movies that have the same title as the books. 
@@ -17,17 +18,19 @@ function findmovie(moviename) {
       return response.json();
   })
   .then(function(data) {
-      console.log(data);
+    console.log(data);
       if (data.Response==='True') {
         printResultsMovie(data);
       }
-  })
+    })
   }
+
   
 // These are the variables and the function that helps append the movies to the page.   
 var resultContentMovieEl = document.querySelector('.resultContentMovies')
 
   function printResultsMovie(movieTitles) {
+    
     console.log(movieTitles)
   
     var resultCardMovieEl = document.createElement('div');
@@ -44,6 +47,8 @@ var resultContentMovieEl = document.querySelector('.resultContentMovies')
   
     resultBodyMovieEl.append(titleElMovie, imageElMovie);
     resultContentMovieEl.append(resultCardMovieEl);
+
+   
   }
 
 // These are the variables for the search and genre inputs. 
@@ -59,7 +64,8 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   var searchInputVal = document.querySelector('#search-input').value;
-
+searchedAuthors.push(searchInputVal);
+localStorage.setItem('searchedAuthors', JSON.stringify(searchedAuthors))
   if (searchInputVal) {
     var queryString =
       'https://www.googleapis.com/books/v1/volumes?q=inauthor:' +
@@ -72,6 +78,7 @@ function handleSearchFormSubmit(event) {
       .then(function (data) {
         var { items } = data;
         resultscontentEl.innerHTML = '';
+        resultContentMovieEl.innerHTML = '';
         for (var i = 0; i < items.length; i++) {
           var { volumeInfo } = items[i];
           printResults(volumeInfo);
@@ -127,10 +134,13 @@ function handleSearchFormGenre(event) {
     .then(function (data) {
       var { items } = data;
       resultContentGenreEl.innerHTML = '';
+      resultContentMovieEl.innerHTML = '';
       for (var i = 0; i < items.length; i++) {
         var { volumeInfo } = items[i];
         printResultsGenre(volumeInfo);
+        findmovie(volumeInfo.title);
       }
+      
     }
     )
 }
@@ -147,6 +157,7 @@ function printResultsGenre(genreList) {
   // These are the element we created for the genre results when they are being appended. 
   var titleElGenre = document.createElement('h3');
   titleElGenre.textContent = genreList.title;
+  
 
   var genreElGenre = document.createElement('p');
   genreElGenre.textContent = genreList.categories
