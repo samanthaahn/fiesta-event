@@ -160,27 +160,33 @@ input::placeholder {
 .columns {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 75%;
   }
-  
-  .columns > div {
+
+.columns > div {
     flex-basis: 33.33%;
     padding: 10px;
     box-sizing: border-box;
     border: 2px solid var(--midnight);
-  }
+}
 
-  .resultcontent {
+.resultcontent {
     background-color: var(--butter);
-  }
+}
 
-  .resultContentGenre {
+.resultContentGenre {
     background-color: var(--creamsicle);
-  }
+}
 
-  .resultContentMovies {
+.resultContentMovies {
     background-color: var(--lightblush);
-  }
+}
 
+.history {
+    background-color: var(--bashful);
+}
 
-  
+li {
+    background-color: var(--bashful);
+}

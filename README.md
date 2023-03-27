@@ -1,4 +1,4 @@
-# fiesta-event
+Project 1 - LitList
 
 ## Description
 
