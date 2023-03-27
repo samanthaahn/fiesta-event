@@ -7,6 +7,10 @@ var orParagraph = document.getElementById('p-or');
 var genreMenu = document.getElementById('format-input');
 var btnSearchAuthor = document.getElementById('btn-search-author');
 var searchedAuthors = [];
+var searchHistoryDiv = document.getElementById('searchhistory');
+var bookColumnEL = document.getElementById('bookresults');
+var genreColumnEL = document.getElementById('genreresults');
+var movieColumnEL = document.getElementById('movieresults');
 
 
 // The function for the movie api. This calls the movies that have the same title as the books. 
@@ -47,6 +51,8 @@ function printResultsMovie(movieTitles) {
 
   resultBodyMovieEl.append(titleElMovie, imageElMovie);
   resultContentMovieEl.append(resultCardMovieEl);
+  resultBodyMovieEl.classList.add('resultContentMovies');
+  titleElMovie.classList.add('resultContentMovies');
 
 
 }
@@ -124,13 +130,16 @@ function printResults(authorList) {
 
   var bodyContentEl = document.createElement('p');
   bodyContentEl.innerHTML =
-    '<strong>Author:</strong> ' + authorList.authors + '<br/>';
+    '<strong style="background-color: var(--butter);">Author:</strong> ' + authorList.authors + '<br/>';
 
   var imageEl = document.createElement('img');
   imageEl.src = authorList.imageLinks.smallThumbnail;
 
   resultBody.append(titleEl, bodyContentEl, imageEl);
   resultscontentEl.append(resultCard);
+  resultBody.classList.add('resultcontent');
+  titleEl.classList.add('resultcontent');
+  bodyContentEl.classList.add('resultcontent');
 }
 
 // This handles the genre button function. 
@@ -183,13 +192,17 @@ function printResultsGenre(genreList) {
 
   var bodyContentElGenre = document.createElement('p');
   bodyContentElGenre.innerHTML =
-    '<strong>Author:</strong> ' + genreList.authors + '<br/>';
+    '<strong style="background-color: var(--creamsicle);">Author:</strong> ' + genreList.authors + '<br/>';
 
   var imageElGenre = document.createElement('img');
   imageElGenre.src = genreList.imageLinks.smallThumbnail;
 
   resultBodyGenre.append(titleElGenre, bodyContentElGenre, genreElGenre, imageElGenre);
   resultContentGenreEl.append(resultCardGenre);
+  titleElGenre.classList.add('resultContentGenre');
+  bodyContentElGenre.classList.add('resultContentGenre');
+  genreElGenre.classList.add('resultContentGenre');
+  resultBodyGenre.classList.add('resultContentGenre');
 
   findmovie(genreList.title);
 }
@@ -203,7 +216,10 @@ btnAuthor.addEventListener('click', function () {
   btnGenre.classList.add('hide');
   formInputBox.classList.remove('hide');
   btnSearchAuthor.classList.remove('hide');
+  searchHistoryDiv.classList.remove('hide');
   orParagraph.classList.add('hide');
+  bookColumnEL.classList.remove('hide');
+  movieColumnEL.classList.remove('hide');
 });
 
 btnGenre.addEventListener('click', function () {
@@ -214,4 +230,7 @@ btnGenre.addEventListener('click', function () {
   btnGenre.classList.add('hide');
   orParagraph.classList.add('hide');
   btnSearch.classList.remove('hide');
+  genreColumnEL.classList.remove('hide');
+  movieColumnEL.classList.remove('hide');
 });
+
